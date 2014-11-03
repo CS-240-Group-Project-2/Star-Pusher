@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1414998582 source:c:\users\ashley\downloads\heihachi\development\projects\star-pusher\src\main.cpp
+	<SDL2/SDL.h>
+	<stdio.h>
+
