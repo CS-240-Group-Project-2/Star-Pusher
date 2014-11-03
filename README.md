@@ -1,4 +1,3 @@
 Star-Pusher
-===========
 
-C++ Star Pusher in SDL2
+C++ Version of Star Pusher made in SDL2
