@@ -3,20 +3,34 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Star Pusher" />
+		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Star Pusher" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug/" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-ansi" />
+					<Add option="-pg" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='cmd /c if exist &quot;$(PROJECT_DIR)bin\Debug\res\&quot; rmdir &quot;$(PROJECT_DIR)bin\Debug\res\&quot; /S /Q' />
+					<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin\Debug\res\&quot; mkdir &quot;$(PROJECT_DIR)bin\Debug\res\&quot;' />
+					<Add after='cmd /c if exist &quot;$(PROJECT_DIR)res\&quot; xcopy &quot;$(PROJECT_DIR)res&quot; &quot;$(PROJECT_DIR)bin\Debug\res&quot; /S' />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Star Pusher" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release/" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -26,11 +40,28 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add after='cmd /c if exist &quot;$(PROJECT_DIR)bin\Release\res\&quot; rmdir &quot;$(PROJECT_DIR)bin\Release\res\&quot; /S /Q' />
+					<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin\Release\res\&quot; mkdir &quot;$(PROJECT_DIR)bin\Release\res\&quot;' />
+					<Add after='cmd /c if exist &quot;$(PROJECT_DIR)res\&quot; xcopy &quot;$(PROJECT_DIR)res&quot; &quot;$(PROJECT_DIR)bin\Release\res&quot; /S' />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wextra" />
 			<Add option="-Wall" />
+			<Add directory="dep" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="src/Game/game.cpp" />
+		<Unit filename="src/Game/game.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/main.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
