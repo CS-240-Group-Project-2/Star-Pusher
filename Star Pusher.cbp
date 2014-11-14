@@ -58,8 +58,13 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="res/levels/levels.dat" />
+		<Unit filename="src/Events/EventHandler.cpp" />
+		<Unit filename="src/Events/EventHandler.h" />
 		<Unit filename="src/Game/game.cpp" />
 		<Unit filename="src/Game/game.h" />
+		<Unit filename="src/Tiles/tiles.cpp" />
+		<Unit filename="src/Tiles/tiles.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/main.h" />
 		<Extensions>

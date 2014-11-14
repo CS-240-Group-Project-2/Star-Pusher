@@ -1,6 +1,11 @@
 #ifndef EVENTHANDLER_H_INCLUDED
 #define EVENTHANDLER_H_INCLUDED
 
+/*
+ * Event Handling
+ * [ ]
+ */
+
 struct EventContainer
 {
 public:
