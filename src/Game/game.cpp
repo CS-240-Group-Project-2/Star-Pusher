@@ -212,14 +212,8 @@ bool Game::update()
 
 EventContainer Game::event()
 {
-    EventContainer newEvent;
-    if(SDL_PollEvent(&this->sdlEvent) != 0)
-    {
-        char keyPressed = this->sdlEvent.key.keysym.sym;
-        newEvent.type = this->sdlEvent.type;
-        newEvent.key  = keyPressed;
-    }
-    return newEvent;
+    //we will call the eventhandler and return the container it gives us
+    return this->eventHander.handleAll();
 }
 
 SDL_Surface* Game::loadSurface( std::string path )

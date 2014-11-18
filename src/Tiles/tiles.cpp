@@ -1,5 +1,6 @@
 #include "tiles.h"
 
+/*
 Tile::Tile( int x, int y, int tileType )
 {
     //Get the offsets
@@ -33,3 +34,4 @@ SDL_Rect Tile::getBox()
 {
     return mBox;
 }
+*/
