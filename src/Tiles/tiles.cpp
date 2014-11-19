@@ -7,8 +7,8 @@ Tile::Tile( int x, int y, int tileType )
     mBox.y = y;
 
     //Set the collision box
-    mBox.w = TILE_WIDTH;
-    mBox.h = TILE_HEIGHT;
+    //mBox.w = TILE_WIDTH;
+    //mBox.h = TILE_HEIGHT;
 
     //Get the tile type
     mType = tileType;
@@ -17,11 +17,11 @@ Tile::Tile( int x, int y, int tileType )
 void Tile::render( SDL_Rect& camera )
 {
     //If the tile is on screen
-    if( checkCollision( camera, mBox ) )
-    {
+    //if( checkCollision( camera, mBox ) )
+    //{
         //Show the tile
-        gTileTexture.render( mBox.x - camera.x, mBox.y - camera.y, &gTileClips[ mType ] );
-    }
+    //    gTileTexture.render( mBox.x - camera.x, mBox.y - camera.y, &gTileClips[ mType ] );
+    //}
 }
 
 int Tile::getType()

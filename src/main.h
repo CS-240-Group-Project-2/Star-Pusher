@@ -10,8 +10,9 @@
 #include <fstream>
 #include <vector>
 
-// custom class
+// custom classes
 #include "Events/EventHandler.h"
+#include "MatrciesLocation/MatricesLocation.h"
 
 using namespace std;
 
