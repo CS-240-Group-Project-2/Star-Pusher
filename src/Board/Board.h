@@ -4,9 +4,15 @@
 
 class Board{
 public:
+    //Variables from game class
+    struct images
+    {
+        string name; // try to make them caps
+        string file;
+    };
     //Constructor: loads string vector map. Converts to a 2D-Array for matrices calculations.
     //Finds and sets player location. Finds and sets goal and star locations.
-    Board(vector<string>);
+    Board(vector<string>, vector<images>);
     //Destructor
     ~Board();
     //Renders game board, based on 2d array map, within camera bounds.
@@ -30,7 +36,9 @@ private:
     vector<MatricesLocation> goal; //Keep track of goal locations in matrices
     vector<MatricesLocation> star; //Keep track of star locations in matrices
     //!Score tracking variables
-
+    bool winCondition;
+    int goalsTotal;
+    int goalsRemaining;
 };
 
 #endif // BOARD_H
