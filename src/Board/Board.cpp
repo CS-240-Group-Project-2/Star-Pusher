@@ -2,7 +2,6 @@
 
 //!Constructor
 Board::Board(vector<string> newMap, vector<images> imageDatabase){
-    //!!!!!!!! Load in the string vector map here !!!!!!!!!
     //Setup array height and width of map loaded into new Board object.
     int mapHeight = newMap.size();
     int mapWidth = 0;
@@ -11,20 +10,37 @@ Board::Board(vector<string> newMap, vector<images> imageDatabase){
             mapWidth = newMap[i].length();
         }
     }
-    //!!!!!!!! Convert string vector map to array !!!!!!!!!
     //Create mapArray matrices, according to mapHeight/mapWidth, from newMap vector.
     char mapArray[mapHeight][mapWidth];
+    MatricesLocation newStar;
+    MatricesLocation newGoal;
     for(int i = 0; i < mapHeight - 1; ++i){
         for(int j = 0; j < mapWidth - 1; ++j){
             //!!!!! Might need to assess strings that are less than mapWidth? !!!!!!
             mapArray[i][j] = {newMap[i].at(j)};
+            //Find player position
+            if(mapArray[i][j] == '@'){
+                player.x = j;
+                player.y = i;
+            }
+            //Find star positions
+            if(mapArray[i][j] == '$'){
+                newStar.x = j;
+                newStar.y = i;
+                stars.push_back(newStar);
+            }
+            //Find goal positions
+            if(mapArray[i][j] == '.'){
+                newGoal.x = j;
+                newGoal.y = i;
+                goals.push_back(newGoal);
+            }
         }
     }
-    //!!!!!!!! Find and set player position       !!!!!!!!!
-
-    //!!!!!!!! Find and set star positions        !!!!!!!!!
-
-    //!!!!!!!! Find and set goal positions        !!!!!!!!!
+    //Set score keeping variables
+    goalsTotal = goals.size();
+    goalsRemaining = goals.size();
+    winCondition = false;
 }
 
 //!Destructor
@@ -41,5 +57,10 @@ void Board::render(){
 //!movement
 void Board::movement(int x, int y){
     //!!!!!!!! Calculate movement, based on event !!!!!!!!!
+
+}
+
+//!checkForWinCondition
+bool Board::checkForWinCondition(){
 
 }

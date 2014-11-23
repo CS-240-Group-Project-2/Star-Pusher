@@ -19,8 +19,8 @@ public:
     void render();
     //Takes X and Y coordinates, and performs movement and rendering of game board.
     void movement(int xMove, int yMove);
-    //Checks for win-condition, checking star tiles against goal tiles
-    void checkForWinCondition();
+    //Checks for win-condition, returning true if game is won.
+    bool checkForWinCondition();
 
 
 private:
@@ -33,8 +33,8 @@ private:
     const int CAMERA_HEIGHT = 12; //per tile
     //!MatricesLocations variables
     MatricesLocation player; //Keep track of player position in matrices
-    vector<MatricesLocation> goal; //Keep track of goal locations in matrices
-    vector<MatricesLocation> star; //Keep track of star locations in matrices
+    vector<MatricesLocation> goals; //Keep track of goal locations in matrices
+    vector<MatricesLocation> stars; //Keep track of star locations in matrices
     //!Score tracking variables
     bool winCondition;
     int goalsTotal;
