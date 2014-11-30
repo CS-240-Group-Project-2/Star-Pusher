@@ -54,13 +54,15 @@ private:
     SDL_Window* gWindow;
     SDL_Surface* gScreenSurface;
     SDL_Surface* gStretchedSurface;
-    SDL_Event sdlEvent;
 
     // others
     vector<bool> startupStatus;
     vector<images> imageDatabase;
     vector<SDL_Surface*> surfaceController;
     vector<Level> levelTest;
+
+    // core features
+    EventHandler eventHandler;
 
     // functions
     bool file_exists(string);

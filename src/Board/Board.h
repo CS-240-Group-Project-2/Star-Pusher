@@ -37,8 +37,8 @@ private:
     const int BOARD_HEIGHT = 1530; //per pixel
     const int TILE_WIDTH = 50; //per pixel
     const int TILE_HEIGHT = 85; //per pixel
-    const int CAMERA_WIDTH = 7; //per tile
-    const int CAMERA_HEIGHT = 12; //per tile
+    const int CAMERA_WIDTH = 12; //per tile
+    const int CAMERA_HEIGHT = 7; //per tile
     //!MatricesLocations variables
     MatricesLocation player; //Keep track of player position in matrices
     vector<MatricesLocation> goals; //Keep track of goal locations in matrices
