@@ -62,7 +62,7 @@ private:
     vector<Level> levelTest;
 
     // core features
-    EventHandler eventHander;
+    EventHandler eventHandler;
 
     // functions
     bool file_exists(string);

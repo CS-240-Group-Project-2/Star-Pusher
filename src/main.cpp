@@ -11,7 +11,7 @@ int main( int argc, char* args[] )
     while(loop)
     {
         event = game.event();
-        if(event.type == SDL_QUIT)
+        if(event.getType() == SDL_QUIT)
             loop = false;
         game.update();
     }

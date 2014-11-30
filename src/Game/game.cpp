@@ -185,7 +185,6 @@ bool Game::loadMedia()
         }
         levels.close();
     }
-    /*
     for(int i=0;i<this->levelTest.size();++i)
     {
         cout << "### START ###" << endl;
@@ -195,7 +194,6 @@ bool Game::loadMedia()
         }
         cout << "### END ###" << endl;
     }
-    */
 	return success;
 }
 
@@ -213,7 +211,7 @@ bool Game::update()
 EventContainer Game::event()
 {
     //we will call the eventhandler and return the container it gives us
-    return this->eventHander.handleAll();
+    return this->eventHandler.handleAll();
 }
 
 SDL_Surface* Game::loadSurface( std::string path )

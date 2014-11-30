@@ -18,8 +18,6 @@ EventContainer EventHandler::handleAll()
             this->handleQuit();
             break;
         case SDL_KEYDOWN:
-            this->handleKeys();
-            break;
         case SDL_KEYUP:
             this->handleKeys();
             break;
@@ -32,16 +30,18 @@ EventContainer EventHandler::handleAll()
 
 bool EventHandler::handleKeys()
 {
+    EventContainer newContainer;
     // we have the event variable to play with
-    this->container.type = this->sdlEvent.type;
-    this->container.key = this->sdlEvent.key.keysym.sym;
-    printf( "%c was released\n", this->container.key);
+    newContainer.setType(this->sdlEvent.type);
+    newContainer.setKey(this->sdlEvent.key.keysym.sym);
+    printf( "Pressed/Released: %c\n", newContainer.getKey());
     return true;
 }
 
 bool EventHandler::handleQuit()
 {
-    this->container.type = this->sdlEvent.type;
-    this->container.key = '~';
+    EventContainer newContainer;
+    this->container = newContainer;
+    this->container.setType(this->sdlEvent.type);
     return true;
 }

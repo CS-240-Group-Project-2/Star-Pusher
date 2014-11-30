@@ -2,6 +2,7 @@
 #define EVENTHANDLER_H_INCLUDED
 
 #include "../main.h"
+
 /*
  * Event Handling
  * [ ]
@@ -10,13 +11,26 @@
 struct EventContainer
 {
 public:
+    int getType()
+    {
+        return this->type;
+    }
+    char getKey()
+    {
+        return this->key;
+    }
+    bool setType(int type)
+    {
+        this->type = type;
+        return true;
+    }
+    bool setKey(char key)
+    {
+        this->key = key;
+        return true;
+    }
     int type;
     char key;
-    EventContainer()
-    {
-        this->type = 0;
-        this->key  = ' ';
-    }
 };
 
 class EventHandler
