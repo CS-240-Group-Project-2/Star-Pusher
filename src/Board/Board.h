@@ -17,7 +17,7 @@ public:
     //Destructor
     ~Board();
 
-    //Creates 2-dimensional array matrices with passed vector of strings
+    //Creates 2-dimensional char array matrices with passed vector of strings
     void createMatrices(vector<string>);
 
     //Loads texture from string path and returns the texture
@@ -43,8 +43,8 @@ public:
 
 private:
     //! Preset dimensions
-    const int BOARD_WIDTH = 1500; //per pixel
-    const int BOARD_HEIGHT = 1530; //per pixel
+    const int BOARD_WIDTH = 1500; //per pixel - Total of 30 tiles wide
+    const int BOARD_HEIGHT = 1530; //per pixel - Total of 18 tiles high
     const int TILE_WIDTH = 50; //per pixel
     const int TILE_HEIGHT = 85; //per pixel
     const int CAMERA_WIDTH = 12; //per tile
@@ -52,9 +52,13 @@ private:
     const int CAMERA_BOUNDS_WIDTH = 600; //per pixel
     const int CAMERA_BOUNDS_HEIGHT = 595; //per pixel
 
+    //! The matrices to be used for the map
+    char** mapArray;
+
     //! Non-preset dimensions
     int mapHeight;
     int mapWidth;
+
 
     //! Renderer that will be passed when object is created
     SDL_Renderer* gRenderer;

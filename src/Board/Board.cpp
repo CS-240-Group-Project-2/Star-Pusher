@@ -15,7 +15,12 @@ Board::Board(vector<string> newMap, vector<images> imageDatabase_Passed, SDL_Ren
 
 //!Destructor
 Board::~Board(){
-
+    //Delete and clear mapArray
+    for(int h = 0; h < mapHeight; ++h){
+        delete [] mapArray[h];
+    }
+    delete [] mapArray;
+    mapArray = 0;
 }
 
 //Called from constructor: creates 2-dimensional array matrices for tiling manipulation
@@ -28,8 +33,13 @@ void Board::createMatrices(vector<string> newMap){
             mapWidth = newMap[i].length();
         }
     }
-    //Create mapArray matrices, according to mapHeight/mapWidth, from newMap vector.
-    char mapArray[mapHeight][mapWidth];
+    //Initialize mapArray matrices, according to mapHeight/mapWidth. In this format: mapArray[mapHeight][mapWidth]
+    //! **** DELETE mapArray IN DESTRUCTOR ****
+    mapArray = new char*[mapHeight];
+    for(int h = 0; h < mapHeight; ++h){
+        mapArray[h] = new char[mapWidth];
+    }
+
     MatricesLocation newStar;
     MatricesLocation newGoal;
     for(int i = 0; i < mapHeight - 1; ++i){
@@ -87,21 +97,50 @@ SDL_Texture* Board::loadTexture( std::string path )
 
 //! render
 void Board::render(){
-    //!!!!!!!! Render the current 2d array        !!!!!!!!!
-    //SDL_Rect used to keep track of tile rendering, starting from player position
+    //Initialize SDL_Rect used to keep track of tile rendering
     SDL_Rect renderRect;
     renderRect.h = TILE_HEIGHT;
     renderRect.w = TILE_WIDTH;
-    renderRect.x = player.x;
-    renderRect.y = player.y;
+    renderRect.x = 0;
+    renderRect.y = 0;
+
+    //Find starting 0,0 x,y position of camera to be rendered
+    int cameraX = 0;
+    int cameraY = 0;
+    //Camera will be within bounds of whole map - no adjustment necessary
+    if(player.x >= 5 && player.x <= 23 && player.y >= 3 && player.y <= 14){
+        cameraX = player.x - 5;
+        cameraY = player.y - 3;
+    }
+    //Otherwise, adjust camera to not go out of bounds of map
+    else if(player.x < 5){
+        cameraX = 0;
+    }
+    else if(player.x > 23){
+        cameraX = 29;
+    }
+    else if(player.y < 3){
+        cameraY = 0;
+    }
+    else if(player.y > 14){
+        cameraY = 17;
+    }
+
+    //Set starting position to renderRect
+    renderRect.x = cameraX;
+    renderRect.y = cameraY;
 
     //Clear screen
     SDL_RenderClear(gRenderer);
 
     //Render matrices to screen
-    for(int i = 0; i < CAMERA_HEIGHT - 1; ++i){
-        for(int j = 0; j < CAMERA_WIDTH - 1; ++j){
-            //!!!!!!!!!!!! continue here !!!!!!!!!!!!!!  <----------------------------------------------
+    for(int i = cameraY; i <= 7; ++i){
+        for(int j = cameraX; j <= 12; ++j){
+            //!rendering template: SDL_RenderCopy( gRenderer, gTexture, sourceRect, destinationRect );
+
+            //Determine which textures we're needing to print
+            //! CONTINUE HERE! <------------------------------------------------------------------------------------------------------------
+
         }
     }
 }
