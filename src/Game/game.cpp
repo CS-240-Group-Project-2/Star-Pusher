@@ -206,6 +206,8 @@ bool Game::update()
     //Update the surface
     SDL_UpdateWindowSurface(this->gWindow);
     return true;
+
+    //!!!!!!!!! Put in gRenderer updating here !!!!!!!!!!!!!!!!!!!!!
 }
 
 EventContainer Game::event()
