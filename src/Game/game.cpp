@@ -185,7 +185,6 @@ bool Game::loadMedia()
         }
         levels.close();
     }
-    /*
     for(int i=0;i<this->levelTest.size();++i)
     {
         cout << "### START ###" << endl;
@@ -195,7 +194,6 @@ bool Game::loadMedia()
         }
         cout << "### END ###" << endl;
     }
-    */
 	return success;
 }
 
@@ -212,14 +210,8 @@ bool Game::update()
 
 EventContainer Game::event()
 {
-    EventContainer newEvent;
-    if(SDL_PollEvent(&this->sdlEvent) != 0)
-    {
-        char keyPressed = this->sdlEvent.key.keysym.sym;
-        newEvent.type = this->sdlEvent.type;
-        newEvent.key  = keyPressed;
-    }
-    return newEvent;
+    //we will call the eventhandler and return the container it gives us
+    return this->eventHandler.handleAll();
 }
 
 SDL_Surface* Game::loadSurface( std::string path )

@@ -59,10 +59,13 @@
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="res/levels/levels.dat" />
+		<Unit filename="src/Board/Board.cpp" />
+		<Unit filename="src/Board/Board.h" />
 		<Unit filename="src/Events/EventHandler.cpp" />
 		<Unit filename="src/Events/EventHandler.h" />
 		<Unit filename="src/Game/game.cpp" />
 		<Unit filename="src/Game/game.h" />
+		<Unit filename="src/MatrciesLocation/MatricesLocation.h" />
 		<Unit filename="src/Tiles/tiles.cpp" />
 		<Unit filename="src/Tiles/tiles.h" />
 		<Unit filename="src/main.cpp" />

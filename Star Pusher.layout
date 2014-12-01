@@ -1,33 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="src\Game\game.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="6866" topLine="109" />
+=======
+	<File name="src\Events\EventHandler.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="952" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="src\MatrciesLocation\MatricesLocation.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="184" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Tiles\tiles.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="588" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="src\Tiles\tiles.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="76" topLine="0" />
+>>>>>>> f4da3d9a041015a51c3a1b4d41e0eab736e4c1d2
 		</Cursor>
 	</File>
 	<File name="src\Game\game.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="209" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\Events\EventHandler.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="102" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="280" topLine="0" />
+=======
+			<Cursor1 position="268" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\main.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+			<Cursor1 position="347" topLine="0" />
+>>>>>>> f4da3d9a041015a51c3a1b4d41e0eab736e4c1d2
+		</Cursor>
+	</File>
+	<File name="src\main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+<<<<<<< HEAD
+			<Cursor1 position="280" topLine="0" />
+=======
+			<Cursor1 position="113" topLine="0" />
+>>>>>>> f4da3d9a041015a51c3a1b4d41e0eab736e4c1d2
+		</Cursor>
+	</File>
+	<File name="src\Game\game.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="50" topLine="0" />
+=======
+			<Cursor1 position="5955" topLine="200" />
+>>>>>>> f4da3d9a041015a51c3a1b4d41e0eab736e4c1d2
 		</Cursor>
 	</File>
 	<File name="src\Tiles\tiles.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="300" topLine="0" />
 		</Cursor>
 	</File>
@@ -39,6 +78,14 @@
 	<File name="src\Events\EventHandler.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
+=======
+			<Cursor1 position="1226" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="src\Game\game.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1110" topLine="51" />
+>>>>>>> f4da3d9a041015a51c3a1b4d41e0eab736e4c1d2
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
