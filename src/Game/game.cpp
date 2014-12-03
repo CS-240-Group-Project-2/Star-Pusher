@@ -59,6 +59,26 @@ Game::Game():
 			newImage.file = "res/images/characters/princess.png";
 			this->imageDatabase.push_back(newImage);
 
+			newImage.name = "STAR";
+			newImage.file = "res/images/objects/Star.png";
+			this->imageDatabase.push_back(newImage);
+
+			newImage.name = "GOAL";
+			newImage.file = "res/images/objects/RedSelector.png";
+			this->imageDatabase.push_back(newImage);
+
+			newImage.name = "GOAL_COMPLETED";
+			newImage.file = "res/images/objects/Selector.png";
+			this->imageDatabase.push_back(newImage);
+
+			newImage.name = "GRASS";
+			newImage.file = "res/images/walls/Grass_Block.png";
+			this->imageDatabase.push_back(newImage);
+
+			newImage.name = "WALL";
+			newImage.file = "res/images/walls/Wall_Block_Tall.png";
+			this->imageDatabase.push_back(newImage);
+
 		}
 	}
 }

@@ -21,6 +21,12 @@ Board::~Board(){
     }
     delete [] mapArray;
     mapArray = 0;
+    //Delete and clear gRenderer
+    SDL_DestroyRenderer(gRenderer);
+    gRenderer = NULL;
+    //Delete and clear newTexture
+    SDL_DestroyTexture(newTexture);
+    newTexture = NULL;
 }
 
 //Called from constructor: creates 2-dimensional array matrices for tiling manipulation
@@ -71,7 +77,7 @@ void Board::createMatrices(vector<string> newMap){
 SDL_Texture* Board::loadTexture( std::string path )
 {
     //The final texture
-    SDL_Texture* newTexture = NULL;
+    newTexture = NULL;
 
     //Load image at specified path
     SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
@@ -96,7 +102,7 @@ SDL_Texture* Board::loadTexture( std::string path )
 }
 
 //! render
-void Board::render(){
+SDL_Renderer* Board::render(){
     //Initialize SDL_Rect used to keep track of tile rendering
     SDL_Rect renderRect;
     renderRect.h = TILE_HEIGHT;
@@ -107,7 +113,7 @@ void Board::render(){
     //Find starting 0,0 x,y position of camera to be rendered
     int cameraX = 0;
     int cameraY = 0;
-    //Camera will be within bounds of whole map - no adjustment necessary
+    //If camera will be within bounds of whole map - no adjustment necessary
     if(player.x >= 5 && player.x <= 23 && player.y >= 3 && player.y <= 14){
         cameraX = player.x - 5;
         cameraY = player.y - 3;
@@ -126,23 +132,70 @@ void Board::render(){
         cameraY = 17;
     }
 
-    //Set starting position to renderRect
-    renderRect.x = cameraX;
-    renderRect.y = cameraY;
+    //Set starting position of camera to renderRect
+    renderRect.x = (cameraX * 50);
+    renderRect.y = (cameraY * 85);
 
     //Clear screen
     SDL_RenderClear(gRenderer);
 
     //Render matrices to screen
-    for(int i = cameraY; i <= 7; ++i){
-        for(int j = cameraX; j <= 12; ++j){
-            //!rendering template: SDL_RenderCopy( gRenderer, gTexture, sourceRect, destinationRect );
-
-            //Determine which textures we're needing to print
-            //! CONTINUE HERE! <------------------------------------------------------------------------------------------------------------
-
+    for(int i = cameraY; i <= (cameraY + 7); ++i){
+        for(int j = cameraX; j <= (cameraX + 12); ++j){
+            /*
+            ;   Rendering template: SDL_RenderCopy( gRenderer, gTexture, sourceRect, destinationRect );
+            ;
+            ;   Texture format from matrices is as follows:
+            ;   @ - The starting position of the player.
+            ;   $ - The starting position for a pushable star.
+            ;   . - A goal where a star needs to be pushed.
+            ;   + - Player & goal
+            ;   * - Star & goal
+            ;  (space) - an empty open space.
+            ;   # - A wall.
+            */
+            //!Determine which texture we're going to print for the current matrices tile
+            if(mapArray[i][j] == '@'){ //Player
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("CHARBOY")].file), NULL, &renderRect);
+            }
+            else if(mapArray[i][j] == '$'){ //Pushable Star
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("STAR")].file), NULL, &renderRect);
+            }
+            else if(mapArray[i][j] == '.'){ //A goal
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GOAL")].file), NULL, &renderRect);
+            }
+            else if(mapArray[i][j] == '+'){ //Player & goal
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GOAL")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("CHARBOY")].file), NULL, &renderRect);
+            }
+            else if(mapArray[i][j] == '*'){ //Star & goal
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GOAL_COMPLETED")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("STAR")].file), NULL, &renderRect);
+            }
+            else if(mapArray[i][j] == ' '){ //Floor
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+            }
+            else if(mapArray[i][j] == '#'){ //Wall
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("WALL")].file), NULL, &renderRect);
+            }
+            //!Increment renderRect to move to next position to print to on screen
+            //If we've reached the end of the row, reset renderRect X & increment the Y value to go to new row in matrices
+            if(j == 12){
+                renderRect.x = (cameraX * 50);
+                renderRect.y = (renderRect.y + 85);
+            }
+            //Otherwise, increment X value to move to next column in matrices
+            else{
+                renderRect.x = (renderRect.x + 50);
+            }
         }
     }
+    return gRenderer;
 }
 
 //! movement

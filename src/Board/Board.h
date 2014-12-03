@@ -24,7 +24,7 @@ public:
     SDL_Texture* loadTexture(string);
 
     //Renders game board, based on 2d array map, within camera bounds.
-    void render();
+    SDL_Renderer* render();
 
     //Takes X and Y coordinates, and performs movement and rendering of game board.
     void movement(int xMove, int yMove); //!!!!! May not use this -> may opt for seperate movement functions !!!!!
@@ -59,9 +59,11 @@ private:
     int mapHeight;
     int mapWidth;
 
-
     //! Renderer that will be passed when object is created
     SDL_Renderer* gRenderer;
+
+    //! SDL_Texture that will be used with loadTexture function
+    SDL_Texture* newTexture;
 
     //! MatricesLocations variables
     MatricesLocation player; //Keep track of player position in matrices
