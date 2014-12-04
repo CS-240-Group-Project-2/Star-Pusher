@@ -26,10 +26,6 @@ public:
     //Renders game board, based on 2d array map, within camera bounds.
     SDL_Renderer* render();
 
-    //Takes X and Y coordinates, and performs movement and rendering of game board.
-    void movement(int xMove, int yMove); //!!!!! May not use this -> may opt for seperate movement functions !!!!!
-
-    //!!!! May opt to use these: !!!!!!
     //Movement functions: Run these according to event handler input for game movement controls.
     //Note: These functions will automatically check for walls and other movement-blocking factors.
     void moveUp();

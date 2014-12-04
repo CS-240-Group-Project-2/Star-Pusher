@@ -198,11 +198,6 @@ SDL_Renderer* Board::render(){
     return gRenderer;
 }
 
-//! movement
-void Board::movement(int x, int y){
-    //!!!!!!!! Calculate movement, based on event !!!!!!!!!
-
-}
 //! Movement functions: check if movement is possible, and adjust mapArray and player position accordingly
 void Board::moveUp(){
     if(mapArray[player.y - 1][player.x] == ' '){        //! Floor tile - free to move
