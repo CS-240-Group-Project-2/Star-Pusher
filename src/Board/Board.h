@@ -32,10 +32,14 @@ public:
     //!!!! May opt to use these: !!!!!!
     //Movement functions: Run these according to event handler input for game movement controls.
     //Note: These functions will automatically check for walls and other movement-blocking factors.
-    SDL_Surface moveUp();
-    SDL_Surface moveDown();
-    SDL_Surface moveLeft();
-    SDL_Surface moveRight();
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
+    //Functions used within above movement functions to perform mapArray adjustment (and eliminate duplicate code)
+    void moveFloor(MatricesLocation&);
+    void moveGoal(MatricesLocation&);
+    void moveStar(MatricesLocation&, MatricesLocation&);
 
     //Checks for win-condition, returning true if game is won.
     bool checkForWinCondition();

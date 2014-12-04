@@ -156,29 +156,29 @@ SDL_Renderer* Board::render(){
             */
             //!Determine which texture we're going to print for the current matrices tile
             if(mapArray[i][j] == '@'){ //Player
-                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("FLOOR")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("CHARBOY")].file), NULL, &renderRect);
             }
             else if(mapArray[i][j] == '$'){ //Pushable Star
-                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("FLOOR")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("STAR")].file), NULL, &renderRect);
             }
             else if(mapArray[i][j] == '.'){ //A goal
-                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("FLOOR")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GOAL")].file), NULL, &renderRect);
             }
             else if(mapArray[i][j] == '+'){ //Player & goal
-                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("FLOOR")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GOAL")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("CHARBOY")].file), NULL, &renderRect);
             }
             else if(mapArray[i][j] == '*'){ //Star & goal
-                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("FLOOR")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GOAL_COMPLETED")].file), NULL, &renderRect);
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("STAR")].file), NULL, &renderRect);
             }
             else if(mapArray[i][j] == ' '){ //Floor
-                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("GRASS")].file), NULL, &renderRect);
+                SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("FLOOR")].file), NULL, &renderRect);
             }
             else if(mapArray[i][j] == '#'){ //Wall
                 SDL_RenderCopy(gRenderer, loadTexture(imageDatabase[searchImages("WALL")].file), NULL, &renderRect);
@@ -202,6 +202,149 @@ SDL_Renderer* Board::render(){
 void Board::movement(int x, int y){
     //!!!!!!!! Calculate movement, based on event !!!!!!!!!
 
+}
+//! Movement functions: check if movement is possible, and adjust mapArray and player position accordingly
+void Board::moveUp(){
+    if(mapArray[player.y - 1][player.x] == ' '){        //! Floor tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y - 1;
+        tempLocation.x = player.x;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y - 1][player.x] == '.'){   //! Goal tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y - 1;
+        tempLocation.x = player.x;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y - 1][player.x] == '$'){   //! Star tile - move if next tile is a movable position
+        MatricesLocation tempLocation1, tempLocation2;  // Set MatricesLocation for next tiles
+        tempLocation1.y = player.y - 1;
+        tempLocation1.x = player.x;
+        tempLocation2.y = player.y - 2;
+        tempLocation2.x = player.x;
+        moveStar(tempLocation1, tempLocation2);         //Adjust mapArray & player position (if possible)
+    }
+}
+
+void Board::moveDown(){
+    if(mapArray[player.y + 1][player.x] == ' '){        //! Floor tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y + 1;
+        tempLocation.x = player.x;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y + 1][player.x] == '.'){   //! Goal tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y + 1;
+        tempLocation.x = player.x;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y + 1][player.x] == '$'){   //! Star tile - move if next tile is a movable position
+        MatricesLocation tempLocation1, tempLocation2;  // Set MatricesLocation for next tiles
+        tempLocation1.y = player.y + 1;
+        tempLocation1.x = player.x;
+        tempLocation2.y = player.y + 2;
+        tempLocation2.x = player.x;
+        moveStar(tempLocation1, tempLocation2);         //Adjust mapArray & player position (if possible)
+    }
+}
+
+void Board::moveLeft(){
+    if(mapArray[player.y][player.x - 1] == ' '){        //! Floor tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y;
+        tempLocation.x = player.x - 1;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y][player.x - 1] == '.'){   //! Goal tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y;
+        tempLocation.x = player.x - 1;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y][player.x - 1] == '$'){   //! Star tile - move if next tile is a movable position
+        MatricesLocation tempLocation1, tempLocation2;  // Set MatricesLocation for next tiles
+        tempLocation1.y = player.y;
+        tempLocation1.x = player.x - 1;
+        tempLocation2.y = player.y;
+        tempLocation2.x = player.x - 2;
+        moveStar(tempLocation1, tempLocation2);         //Adjust mapArray & player position (if possible)
+    }
+}
+
+void Board::moveRight(){
+    if(mapArray[player.y][player.x + 1] == ' '){        //! Floor tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y;
+        tempLocation.x = player.x + 1;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y][player.x + 1] == '.'){   //! Goal tile - free to move
+        MatricesLocation tempLocation;                  // Set MatricesLocation for next tile
+        tempLocation.y = player.y;
+        tempLocation.x = player.x + 1;
+        moveFloor(tempLocation);                        // Adjust mapArray and player position
+    }
+    else if(mapArray[player.y][player.x + 1] == '$'){   //! Star tile - move if next tile is a movable position
+        MatricesLocation tempLocation1, tempLocation2;  // Set MatricesLocation for next tiles
+        tempLocation1.y = player.y;
+        tempLocation1.x = player.x + 1;
+        tempLocation2.y = player.y;
+        tempLocation2.x = player.x + 2;
+        moveStar(tempLocation1, tempLocation2);         //Adjust mapArray & player position (if possible)
+    }
+}
+
+//! mapArray checking and adjustment + player movement functions
+// Move to floor tile
+void Board::moveFloor(MatricesLocation& nextTile){
+    if(mapArray[player.y][player.x] == '@'){            //If player was standing on floor
+            mapArray[player.y][player.x] = ' ';
+            mapArray[nextTile.y][nextTile.x] = '@';
+        }
+    else if(mapArray[player.y][player.x] == '+'){       //If player was standing on goal
+        mapArray[player.y][player.x] = '.';
+        mapArray[nextTile.y][nextTile.x] = '@';
+    }
+    player.y = nextTile.y;                              //Adjust player position
+    player.x = nextTile.x;
+}
+
+// Move to goal tile
+void Board::moveGoal(MatricesLocation& nextTile){
+    if(mapArray[player.y][player.x] == '@'){            //If player was standing on floor
+            mapArray[player.y][player.x] = ' ';
+            mapArray[nextTile.y][nextTile.x] = '+';
+    }
+    else if(mapArray[player.y][player.x] == '+'){       //If player was standing on goal
+        mapArray[player.y][player.x] = '.';
+        mapArray[nextTile.y][nextTile.x] = '+';
+    }
+    player.y = nextTile.y;                              //Adjust player position
+    player.x = nextTile.x;
+}
+
+// Move star tile, if possible
+void Board::moveStar(MatricesLocation& firstTile, MatricesLocation& secondTile){
+    if(mapArray[secondTile.y][secondTile.x] == ' '){    //!Floor tile - free to move
+        mapArray[secondTile.y][secondTile.x] = '$';     //Push star
+        if(mapArray[firstTile.y][firstTile.x] == '$'){  //If star was on floor
+            moveFloor(firstTile);                       //Move player
+        }
+        else{                                           //If star was on goal
+            moveGoal(firstTile);                        //Move player
+        }
+    }
+    if(mapArray[secondTile.y][secondTile.x] == '.'){    //!Goal tile - free to move
+        mapArray[secondTile.y][secondTile.x] = '*';     //Push star
+        if(mapArray[firstTile.y][firstTile.x] == '$'){  //If star was on floor
+            moveFloor(firstTile);                       //Move player
+        }
+        else{                                           //If star was on goal
+            moveGoal(firstTile);                        //Move player
+        }
+    }
 }
 
 //! checkForWinCondition

@@ -71,8 +71,8 @@ Game::Game():
 			newImage.file = "res/images/objects/Selector.png";
 			this->imageDatabase.push_back(newImage);
 
-			newImage.name = "GRASS";
-			newImage.file = "res/images/walls/Grass_Block.png";
+			newImage.name = "FLOOR";
+			newImage.file = "res/images/walls/Plain_Block.png";
 			this->imageDatabase.push_back(newImage);
 
 			newImage.name = "WALL";
