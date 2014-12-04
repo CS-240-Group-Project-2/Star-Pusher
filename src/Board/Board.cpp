@@ -349,7 +349,14 @@ void Board::moveStar(MatricesLocation& firstTile, MatricesLocation& secondTile){
 
 //! checkForWinCondition
 bool Board::checkForWinCondition(){
-
+    for(int i = 0; i < goals.size() - 1; ++i){
+        if(mapArray[goals[i].y][goals[i].x] == '.'){    //If an empty goal is found
+            winCondition = false;                       //Game has not been won yet, return false
+            return winCondition;
+        }
+    }
+    winCondition = true;                                //If no empty goals were found
+    return winCondition;                                //Game has been won, return true
 }
 
 //! searchImages function from game class used with imageDatabase
