@@ -3,12 +3,7 @@
 #define nullptr 0
 
 #include "../main.h"
-
-struct images
-{
-    string name; // try to make them caps
-    string file;
-};
+#include "../Board/Board.h"
 
 enum STARTUP
 {
@@ -45,15 +40,31 @@ public:
     EventContainer event();
     SDL_Surface* loadSurface(string);
     ~Game();
+
+    //!
+    void createBoard();
+
+    Board newBoard;
+
+
 private:
     //Screen dimension constants
-    static const int SCREEN_WIDTH = 800;
+    static const int SCREEN_WIDTH = 600;
     static const int SCREEN_HEIGHT = 600;
 
     //SDL Info
-    SDL_Window* gWindow;
+    SDL_Window* gWindow = NULL;
     SDL_Surface* gScreenSurface;
     SDL_Surface* gStretchedSurface;
+    //The window renderer
+    SDL_Renderer* gRenderer = NULL;
+    //Current displayed texture
+    SDL_Texture* gTexture = NULL;
+
+    //! Board object
+    vector<string> tempMap;
+
+
 
     // others
     vector<bool> startupStatus;

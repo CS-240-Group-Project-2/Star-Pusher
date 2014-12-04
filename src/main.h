@@ -14,6 +14,14 @@
 #include "Events/EventHandler.h"
 #include "MatrciesLocation/MatricesLocation.h"
 
+struct images
+{
+    std::string name; // try to make them caps
+    std::string file;
+};
+
+
+
 using namespace std;
 
 #endif // MAIN_H_INCLUDED
