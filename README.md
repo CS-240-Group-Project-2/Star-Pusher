@@ -21,7 +21,6 @@ The goal of the game is to move the player character, one tile at a time, and pu
 Parts of the screen:
 (screenshot of game screen)
 
-
 The score tracker is on the right, beneath the display of the current level. The score tracker shows how many moves the player has taken so far on the current level.
 
 On the left is the game section of the window, where the player navigates their sprite through the tiles to try to get the stars to their designated spots.
