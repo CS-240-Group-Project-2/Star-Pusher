@@ -1,7 +1,12 @@
 #include "Board.h"
+#include "../game/game.h"
 
 //!Constructor
-Board::Board(vector<string> newMap, vector<images> imageDatabase_Passed, SDL_Renderer gRender){
+Board::Board(){
+
+}
+
+void Board::createBoard(vector<string> newMap, vector<images> imageDatabase_Passed, SDL_Renderer* gRenderer_Passed){
     //Create matrices for use in tiling
     if(newMap.size() >=1) // so we can send a empty vector
         createMatrices(newMap);

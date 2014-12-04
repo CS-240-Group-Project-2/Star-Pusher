@@ -5,12 +5,6 @@
 #include "../main.h"
 #include "../Board/Board.h"
 
-//struct images
-//{
-//    string name; // try to make them caps
-//    string file;
-//};
-
 enum STARTUP
 {
     SDL = 0,
@@ -53,16 +47,30 @@ public:
     EventContainer event();
     SDL_Surface* loadSurface(string);
     ~Game();
+
+    //!
+    void createBoard();
+
+    Board newBoard;
+
+
 private:
     //Screen dimension constants
-    static const int SCREEN_WIDTH = 800;
+    static const int SCREEN_WIDTH = 600;
     static const int SCREEN_HEIGHT = 600;
 
     //SDL Info
-    SDL_Window* gWindow;
-    //SDL_Surface* gScreenSurface;
-    //SDL_Surface* gStretchedSurface;
-    SDL_Renderer* gRender; // replaces surfaces
+    SDL_Window* gWindow = NULL;
+    SDL_Surface* gScreenSurface;
+    SDL_Surface* gStretchedSurface;
+    //The window renderer
+    SDL_Renderer* gRenderer = NULL;
+    //Current displayed texture
+    SDL_Texture* gTexture = NULL;
+
+    //! Board object
+    vector<string> tempMap;
+
 
     // others
     vector<bool> startupStatus;

@@ -1,6 +1,9 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "../main.h"
+//#include "../game/game.h"
+
+
 
 //Variables from game class
 struct images
@@ -13,7 +16,9 @@ class Board{
 public:
     //!Constructor: loads string vector map. Converts to a 2D-Array for matrices tiling.
     //!Finds and sets player location. Finds and sets goal locations.
-    Board(vector<string>, vector<images>);
+    Board();
+
+    void createBoard(vector<string>, vector<images>, SDL_Renderer*);
 
     //!Destructor
     ~Board();

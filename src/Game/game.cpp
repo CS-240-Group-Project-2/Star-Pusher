@@ -1,8 +1,8 @@
 #include "game.h"
+#include "../Board/Board.h"
 
-Game::Game():
-    gWindow(nullptr), myBoard(vector<string>(), vector<images>())//, gScreenSurface(nullptr), gStretchedSurface(nullptr)
-{
+
+Game::Game(){
     // setup the startupStatus vector
     for(int i=0;i<AMOUNT-1;++i)
         this->startupStatus.push_back(false); // default to false
@@ -129,6 +129,17 @@ bool Game::init()
 		{
             this->startupStatus[MEDIA] = true;
 		}
+		//!Create renderer for window
+        gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
+        if( gRenderer == NULL )
+        {
+            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            //Initialize renderer color
+            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+        }
 		// initialize PNG loading
 		int imgFlags = IMG_INIT_PNG;
 		if(!(IMG_Init(imgFlags) & imgFlags))
@@ -225,10 +236,19 @@ bool Game::loadMedia()
 	return success;
 }
 
+void Game::createBoard(){
+    tempMap.push_back("-########"); tempMap.push_back("##      #"); tempMap.push_back("#   .   #"); tempMap.push_back("#   $   #");
+    tempMap.push_back("# .$@$. #"); tempMap.push_back("####$   #"); tempMap.push_back("---#.   #"); tempMap.push_back("---#   ##");
+    tempMap.push_back("---#####");
+
+    newBoard.createBoard(tempMap, imageDatabase, gRenderer);
+
+}
 
 bool Game::update()
 {
     //Apply the image
+<<<<<<< HEAD
     //SDL_BlitSurface(this->surfaceController[STRETCHED], NULL, this->surfaceController[SCREEN], NULL);
 
     //Update the surface
@@ -245,8 +265,18 @@ bool Game::update()
     //Update screen
     SDL_RenderPresent(this->gRender);
     return true;
+=======
+    //!SDL_BlitSurface(this->surfaceController[STRETCHED], NULL, this->surfaceController[SCREEN], NULL);
+
+    //Update the surface
+    //!SDL_UpdateWindowSurface(this->gWindow);
+>>>>>>> origin/Justin
 
     //!!!!!!!!! Put in gRenderer updating here !!!!!!!!!!!!!!!!!!!!!
+    gRenderer = newBoard.render();
+    SDL_RenderPresent(gRenderer);
+
+    return true;
 }
 
 EventContainer Game::event()
@@ -318,7 +348,7 @@ int Game::searchImages(string fileName)
                 record = i;
                 break;
             }
-            cout << this->imageDatabase[i].name << ":" << fileName << endl;
+            //cout << this->imageDatabase[i].name << ":" << fileName << endl;
         }
         return record;
     }
