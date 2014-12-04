@@ -1,4 +1,6 @@
 #include "EventHandler.h"
+#include "../Game/game.h"
+#include "../Board/Board.h"
 
 EventHandler::EventHandler()
 {
@@ -18,7 +20,10 @@ EventContainer EventHandler::handleAll()
             this->handleQuit();
             break;
         case SDL_KEYDOWN:
+            this->handleKeys();
         case SDL_KEYUP:
+            this->handleKeys();
+        case SDLK_w:
             this->handleKeys();
             break;
         default:
