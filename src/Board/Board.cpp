@@ -1,12 +1,14 @@
 #include "Board.h"
 
 //!Constructor
-Board::Board(vector<string> newMap, vector<images> imageDatabase_Passed, SDL_Renderer* gRenderer_Passed){
+Board::Board(vector<string> newMap, vector<images> imageDatabase_Passed, SDL_Renderer gRender){
     //Create matrices for use in tiling
-    createMatrices(newMap);
+    if(newMap.size() >=1) // so we can send a empty vector
+        createMatrices(newMap);
     //Apply imageDatabase_Passed and gRenderer_Passed to the Board object's imageDatabase and gRenderer
-    imageDatabase = imageDatabase_Passed;
-    gRenderer = gRenderer_Passed;
+    if(imageDatabase_Passed.size() >= 1) // not empty
+        imageDatabase = imageDatabase_Passed;
+//    gRenderer = new SDL_Renderer;
     //Set score keeping variables
     winCondition = false;
 }
@@ -27,6 +29,11 @@ Board::~Board(){
     newTexture = NULL;
 }
 
+void Board::setImages(vector<images> &imageDatabase_passed)
+{
+    if(imageDatabase_passed.size() >= 1) // not empty
+        imageDatabase = imageDatabase_passed;
+}
 //Called from constructor: creates 2-dimensional array matrices for tiling manipulation
 void Board::createMatrices(vector<string> newMap){
     //Setup array height and width of map loaded into new Board object.

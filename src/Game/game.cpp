@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game():
-    gWindow(nullptr)//, gScreenSurface(nullptr), gStretchedSurface(nullptr)
+    gWindow(nullptr), myBoard(vector<string>(), vector<images>())//, gScreenSurface(nullptr), gStretchedSurface(nullptr)
 {
     // setup the startupStatus vector
     for(int i=0;i<AMOUNT-1;++i)
@@ -78,6 +78,7 @@ Game::Game():
 			newImage.name = "WALL";
 			newImage.file = "res/images/walls/Wall_Block_Tall.png";
 			this->imageDatabase.push_back(newImage);
+			this->myBoard.setImages(imageDatabase);
 
 		}
 	}
@@ -214,6 +215,13 @@ bool Game::loadMedia()
         }
         cout << "### END ###" << endl;
     }
+    // setup current level stuff
+    this->current.cLevelID = 0;
+    if(this->levelTest.size()>=this->current.cLevelID)
+        this->current.cLevel = this->levelTest[this->current.cLevelID];
+    else
+        cout << "Levels not correctly assigned." << endl;
+    this->myBoard.createMatrices(this->current.cLevel.map);
 	return success;
 }
 
@@ -221,10 +229,21 @@ bool Game::loadMedia()
 bool Game::update()
 {
     //Apply the image
-    SDL_BlitSurface(this->surfaceController[STRETCHED], NULL, this->surfaceController[SCREEN], NULL);
+    //SDL_BlitSurface(this->surfaceController[STRETCHED], NULL, this->surfaceController[SCREEN], NULL);
 
     //Update the surface
-    SDL_UpdateWindowSurface(this->gWindow);
+    //SDL_UpdateWindowSurface(this->gWindow);
+
+    // renderer stuff
+    //Clear screen
+    this->gRender = myBoard.render();
+    //SDL_RenderClear(this->gRender);
+
+    //Render texture to screen
+    //SDL_RenderCopy(this->gRender, gTexture, NULL, NULL);
+
+    //Update screen
+    SDL_RenderPresent(this->gRender);
     return true;
 
     //!!!!!!!!! Put in gRenderer updating here !!!!!!!!!!!!!!!!!!!!!

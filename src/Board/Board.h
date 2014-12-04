@@ -2,23 +2,25 @@
 #define BOARD_H
 #include "../main.h"
 
+//Variables from game class
+struct images
+{
+    string name; // try to make them caps
+    string file;
+};
+
 class Board{
 public:
-    //Variables from game class
-    struct images
-    {
-        string name; // try to make them caps
-        string file;
-    };
     //!Constructor: loads string vector map. Converts to a 2D-Array for matrices tiling.
     //!Finds and sets player location. Finds and sets goal locations.
-    Board(vector<string>, vector<images>, SDL_Renderer*);
+    Board(vector<string>, vector<images>);
 
     //!Destructor
     ~Board();
 
     //Creates 2-dimensional char array matrices with passed vector of strings
     void createMatrices(vector<string>);
+    void setImages(vector<images>&);
 
     //Loads texture from string path and returns the texture
     SDL_Texture* loadTexture(string);
