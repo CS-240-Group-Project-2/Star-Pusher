@@ -1,5 +1,4 @@
 
-
 Title:
 Star-Pusher
 
@@ -18,10 +17,15 @@ Instructions:
 Star-Pusher is a puzzle game played on a grid of varying size. 
 
 The goal of the game is to move the player character, one tile at a time, and push all of the star sprites on the current level onto the designated star tiles. 
-//mention difficulty if we decide on varying difficulties
 
+Parts of the screen:
+(screenshot of game screen)
 
-The tiles you will encounter while playing Star-Pusher are as follows:
+The score tracker is on the right, beneath the display of the current level. The score tracker shows how many moves the player has taken so far on the current level.
+
+On the left is the game section of the window, where the player navigates their sprite through the tiles to try to get the stars to their designated spots.
+
+The tiles and entities you will encounter while playing Star-Pusher are as follows:
 
 Wall Tile:
 
@@ -41,3 +45,12 @@ Star sprites are movable by the player. They can be pushed from all four sides o
 Star Tile:
 
 Star Tiles are the designated resting points for star sprites. Move all Star Sprites onto Star Tiles in order to pass a level.
+
+Player:
+
+The player character's sprite. Navigate this little guy around the map to get the star sprites onto the star tiles. 
+
+
+
+**DISCLAIMER**:
+Authors not responsible for any occurences of seizures, hearing loss, or the overwhelming urge to become the batman

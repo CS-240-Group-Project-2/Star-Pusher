@@ -1,10 +1,12 @@
 #include "EventHandler.h"
 
 EventHandler::EventHandler()
+//EventHandler constructor
 {
 }
 
 EventHandler::~EventHandler()
+//EventHandler destructor
 {
 }
 
