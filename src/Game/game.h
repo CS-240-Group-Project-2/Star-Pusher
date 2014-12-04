@@ -3,12 +3,13 @@
 #define nullptr 0
 
 #include "../main.h"
+#include "../Board/Board.h"
 
-struct images
-{
-    string name; // try to make them caps
-    string file;
-};
+//struct images
+//{
+//    string name; // try to make them caps
+//    string file;
+//};
 
 enum STARTUP
 {
@@ -34,6 +35,13 @@ public:
     vector<string> map;
 };
 
+struct CurrentData
+{
+    // this will only be used once but should contain the correct data
+    int cLevelID;
+    Level cLevel;
+};
+
 // this class will handle SDL2 stuff
 class Game
 {
@@ -52,17 +60,20 @@ private:
 
     //SDL Info
     SDL_Window* gWindow;
-    SDL_Surface* gScreenSurface;
-    SDL_Surface* gStretchedSurface;
+    //SDL_Surface* gScreenSurface;
+    //SDL_Surface* gStretchedSurface;
+    SDL_Renderer* gRender; // replaces surfaces
 
     // others
     vector<bool> startupStatus;
     vector<images> imageDatabase;
     vector<SDL_Surface*> surfaceController;
     vector<Level> levelTest;
+    CurrentData current;
 
     // core features
     EventHandler eventHandler;
+    Board myBoard;
 
     // functions
     bool file_exists(string);

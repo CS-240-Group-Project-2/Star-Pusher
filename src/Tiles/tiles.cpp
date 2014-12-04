@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> c0e14b1c960070ae5013a79495fd2af186b317fe
 #include "tiles.h"
 
 Tile::Tile( int x, int y, int tileType )
@@ -39,8 +42,13 @@ int Tile::getType()
 SDL_Rect Tile::getBox()
 {
     return mBox;
+<<<<<<< HEAD
 }
 
 
 
+=======
+<<<<<<< HEAD
+}*/
+>>>>>>> c0e14b1c960070ae5013a79495fd2af186b317fe
 
