@@ -8,8 +8,6 @@ Board::Board(vector<string> newMap, vector<images> imageDatabase_Passed, SDL_Ren
     imageDatabase = imageDatabase_Passed;
     gRenderer = gRenderer_Passed;
     //Set score keeping variables
-    goalsTotal = goals.size();
-    goalsRemaining = goals.size();
     winCondition = false;
 }
 
@@ -53,18 +51,12 @@ void Board::createMatrices(vector<string> newMap){
             //!!!!! Might need to assess strings that are less than mapWidth? !!!!!!
             mapArray[i][j] = {newMap[i].at(j)};
             //Find player position
-            if(mapArray[i][j] == '@'){
+            if(mapArray[i][j] == '@' || mapArray[i][j] == '+'){
                 player.x = j;
                 player.y = i;
             }
-            //Find star positions
-            if(mapArray[i][j] == '$'){
-                newStar.x = j;
-                newStar.y = i;
-                stars.push_back(newStar);
-            }
             //Find goal positions
-            if(mapArray[i][j] == '.'){
+            if(mapArray[i][j] == '.' || mapArray[i][j] == '*'){
                 newGoal.x = j;
                 newGoal.y = i;
                 goals.push_back(newGoal);
